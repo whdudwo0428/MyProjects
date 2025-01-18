@@ -11,7 +11,6 @@ from sklearn.naive_bayes import GaussianNB
 from imblearn.over_sampling import SMOTE
 import matplotlib.pyplot as plt
 import matplotlib
-
 matplotlib.use('TkAgg')  # 또는 'Qt5Agg', 'Agg' 등 다른 백엔드 사용 가능
 import seaborn as sns
 from scipy.io import arff
