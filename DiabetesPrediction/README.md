@@ -60,4 +60,8 @@
   - 프로젝트의 수준과 목표에 맞는 가중치 조정과 파라미터 튜닝을 통해 더욱 실용적인 결과를 얻음.
 
 ## **결과요약 (실행결과)**
+![Heatmap](https://github.com/user-attachments/assets/e9808ade-b1c6-46da-9082-0517bd7c1277)
+
+![roc_auc_curve](https://github.com/user-attachments/assets/988afc2e-3854-486c-8ec5-e4771fedb993)
+
 
