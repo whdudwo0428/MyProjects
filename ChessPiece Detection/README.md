@@ -165,7 +165,8 @@ yolov5/
 ### 학습 결과 및 분석
 
 #### 학습 손실 그래프 분석
-![Train Results](results.png)
+![Uploading test.jpg…]()
+
 
 - **train/box_loss, train/obj_loss, train/cls_loss**: 학습 데이터에서의 손실이 에포크가 진행됨에 따라 꾸준히 감소함. 이는 모델이 점진적으로 객체의 위치(box), 객체성(objectness), 클래스(classification)를 더 잘 예측하고 있음을 나타냄.
 - **val/box_loss, val/obj_loss, val/cls_loss**: 검증 데이터에 대한 손실도 유사하게 감소하고 있음. 이는 모델이 학습 데이터에 과적합되지 않고, 일반화 성능을 유지하고 있음을 의미함.
@@ -177,7 +178,8 @@ yolov5/
 - **metrics/mAP_0.5:0.95**: 다양한 IoU 조건에서도 성능이 상승하며 약 78%에 도달. 이는 모델이 다양한 조건에서도 안정적인 탐지 성능을 제공함을 의미.
 
 #### 테스트 이미지 결과 분석
-![Inference Results](685b860d412b91f5d4f7f9e643b84452_jpg.rf.bf4545227a4624e63faf0c38af07fecb.jpg)
+![train](https://github.com/user-attachments/assets/bb2af1f1-dc89-4fe7-a469-8905b3b7e860)
+
 
 - 탐지된 체스 말에는 클래스와 신뢰도 점수가 명확히 표시됨(예: "black-rook: 0.91").
 - 다양한 체스 말에 대해 높은 신뢰도로 탐지하며, 클래스 간 구분도 정확히 이루어짐.
