@@ -161,8 +161,7 @@ yolov5/
 │       └── image2.jpg
 ```
 
-## 학습 결과
-### 학습 결과 및 분석
+## 학습 결과 및 분석
 
 #### 학습 손실 그래프 분석
 ![results](https://github.com/user-attachments/assets/37049c41-592e-4933-a2ed-c363e3a313a7)
