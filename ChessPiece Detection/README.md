@@ -24,18 +24,71 @@ YOLOv5와 Roboflow의 체스 데이터셋을 이용하여 실습하며, 코드 �
 
 ## 환경 설치 및 데이터셋 수집
 
-### 1. 환경 설치
-Python 3.7 이상 필요.
-아래 명령어로 필수 패키지를 설치합니다:
+### 1. YOLOv5, PyTorch 다운로드 및 설치 과정
+
+#### (1) YOLOv5 다운로드
+GitHub에서 YOLOv5 저장소를 클론:
+
+```bash
+git clone https://github.com/ultralytics/yolov5.git
+```
+클론한 디렉토리를 작업 디렉토리로 설정:
+
+```bash
+cd yolov5
+```
+
+#### (2) Python 환경 설정
+Python 3.7 이상 필요. Pycharm에서 프로젝트 환경 생성.
+`requirements.txt` 파일을 통해 필수 패키지 설치:
 
 ```bash
 pip install -U -r requirements.txt
 ```
 
-### 2. 데이터셋 수집
-데이터셋은 Roboflow Chess Piece Dataset에서 제공됩니다.
+#### (3) PyTorch 설치
+PyTorch 설치 명령:
 
-- 데이터셋 Augmentation: Rotation, Blur, Noise 등의 저수준 Augmentation을 추가로 적용하여 학습 성능을 개선했습니다.
+```bash
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu117
+```
+
+#### (4) YOLOv5 테스트 실행
+YOLOv5가 제대로 설치되었는지 확인:
+
+```bash
+python detect.py --source data/images/zidane.jpg --weights yolov5s.pt --img 640
+```
+
+### 2. Roboflow에서 데이터 가져오기 및 적용
+
+#### (1) 데이터셋 다운로드
+Roboflow Chess Piece Dataset에서 데이터셋 다운로드.
+- 다운로드 시 YOLOv5 형식으로 데이터셋을 설정.
+- 데이터셋에 Augmentation 옵션 추가: Rotation, Blur, Noise 등.
+
+#### (2) 데이터셋 디렉토리 구성
+다운로드 받은 데이터셋을 `datasets/Chess_Pieces` 디렉토리에 추가.
+
+```plaintext
+yolov5/
+├── datasets/
+│   ├── Chess_Pieces/
+│   │   ├── train/  # 학습 데이터
+│   │   ├── valid/  # 검증 데이터
+│   │   └── test/   # 테스트 데이터
+```
+
+#### (3) `data/coco.yaml` 파일 수정
+`coco.yaml` 파일을 열어 데이터셋 경로를 Roboflow 데이터셋으로 변경:
+
+```yaml
+train: datasets/Chess_Pieces/train
+val: datasets/Chess_Pieces/valid
+nc: 12
+names: ['white-king', 'white-queen', 'white-bishop', 'white-knight', 'white-rook', 'white-pawn',
+        'black-king', 'black-queen', 'black-bishop', 'black-knight', 'black-rook', 'black-pawn']
+```
 
 ## 모델 학습 및 테스트
 
@@ -45,24 +98,61 @@ YOLOv5 모델 학습을 위해 아래 명령어를 실행합니다:
 ```bash
 python train.py --img 640 --batch 16 --epochs 50 --data data/coco.yaml --weights yolov5s.pt
 ```
-- `--img`: 입력 이미지 크기 (픽셀 단위)
-- `--batch`: 배치 크기
-- `--epochs`: 학습 에폭 수
-- `--data`: 데이터셋 구성 파일
-- `--weights`: 사전 학습된 모델 가중치 파일
+- `--img`: 입력 이미지 크기 (640x640).
+- `--batch`: 배치 크기 (16).
+- `--epochs`: 학습 에폭 수 (50).
+- `--data`: 학습 데이터 및 클래스 정보 파일 경로.
+- `--weights`: 사전 학습된 가중치 파일 (`yolov5s.pt`).
+
+학습 결과:
+- 학습 로그와 모델 가중치는 `runs/train/exp/weights/` 디렉토리에 저장.
+- 주요 파일:
+  - `best.pt`: 학습된 최종 모델.
+  - `last.pt`: 마지막 에폭 모델.
 
 ### 2. 모델 테스트
-학습된 모델의 성능을 평가하려면 아래 명령어를 실행합니다:
+학습된 모델로 테스트:
 
 ```bash
 python test.py --data data/coco.yaml --weights runs/train/exp/weights/best.pt --img 640
 ```
+- `--weights`: 학습된 모델 가중치 (`best.pt`).
+- `--img`: 입력 이미지 크기.
 
-### 3. 모델 탐지
-임의의 이미지에서 체스 말을 탐지하려면:
+테스트 결과:
+- 테스트 결과는 `runs/test/` 디렉토리에 저장.
+- 결과 파일: `results.txt`.
+
+### 3. Inference (탐지 실행)
+테스트 이미지에서 탐지 실행:
 
 ```bash
 python detect.py --source datasets/Chess_Pieces/test --weights runs/train/exp/weights/best.pt --img 640
+```
+- `--source`: 테스트할 이미지 경로.
+- `--weights`: 학습된 모델 가중치.
+
+탐지 결과:
+- 탐지 결과 이미지는 `runs/detect/` 디렉토리에 저장.
+
+### 정리된 디렉토리 구조
+
+```plaintext
+yolov5/
+├── datasets/
+│   ├── Chess_Pieces/
+│   │   ├── train/
+│   │   ├── valid/
+│   │   └── test/
+├── runs/
+│   ├── train/
+│   │   └── exp/
+│   │       ├── weights/
+│   │       │   ├── best.pt
+│   │       │   └── last.pt
+│   └── detect/
+│       ├── image1.jpg
+│       └── image2.jpg
 ```
 
 ## 학습 결과
