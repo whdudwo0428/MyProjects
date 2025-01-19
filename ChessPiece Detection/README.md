@@ -165,7 +165,7 @@ yolov5/
 ### 학습 결과 및 분석
 
 #### 학습 손실 그래프 분석
-![Uploading test.jpg…]()
+![results](https://github.com/user-attachments/assets/37049c41-592e-4933-a2ed-c363e3a313a7)
 
 
 - **train/box_loss, train/obj_loss, train/cls_loss**: 학습 데이터에서의 손실이 에포크가 진행됨에 따라 꾸준히 감소함. 이는 모델이 점진적으로 객체의 위치(box), 객체성(objectness), 클래스(classification)를 더 잘 예측하고 있음을 나타냄.
