@@ -38,6 +38,7 @@ git clone https://github.com/ultralytics/yolov5.git
 cd yolov5
 ```
 
+
 #### (2) Python 환경 설정
 Python 3.7 이상 필요. Pycharm에서 프로젝트 환경 생성.
 `requirements.txt` 파일을 통해 필수 패키지 설치:
@@ -46,12 +47,14 @@ Python 3.7 이상 필요. Pycharm에서 프로젝트 환경 생성.
 pip install -U -r requirements.txt
 ```
 
+
 #### (3) PyTorch 설치
 PyTorch 설치 명령:
 
 ```bash
 pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu117
 ```
+
 
 #### (4) YOLOv5 테스트 실행
 YOLOv5가 제대로 설치되었는지 확인:
@@ -60,12 +63,14 @@ YOLOv5가 제대로 설치되었는지 확인:
 python detect.py --source data/images/zidane.jpg --weights yolov5s.pt --img 640
 ```
 
+
 ### 2. Roboflow에서 데이터 가져오기 및 적용
 
 #### (1) 데이터셋 다운로드
 Roboflow Chess Piece Dataset에서 데이터셋 다운로드.
 - 다운로드 시 YOLOv5 형식으로 데이터셋을 설정.
 - 데이터셋에 Augmentation 옵션 추가: Rotation, Blur, Noise 등.
+
 
 #### (2) 데이터셋 디렉토리 구성
 다운로드 받은 데이터셋을 `datasets/Chess_Pieces` 디렉토리에 추가.
@@ -78,6 +83,7 @@ yolov5/
 │   │   ├── valid/  # 검증 데이터
 │   │   └── test/   # 테스트 데이터
 ```
+
 
 #### (3) `data/coco.yaml` 파일 수정
 `coco.yaml` 파일을 열어 데이터셋 경로를 Roboflow 데이터셋으로 변경:
