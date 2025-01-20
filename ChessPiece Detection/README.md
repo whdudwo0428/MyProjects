@@ -70,7 +70,7 @@ python detect.py --source data/images/zidane.jpg --weights yolov5s.pt --img 640
 Roboflow Chess Piece Dataset에서 데이터셋 다운로드.
 - 다운로드 시 YOLOv5 형식으로 데이터셋을 설정.
 - 데이터셋에 Augmentation 옵션 추가: Rotation, Blur, Noise 등.
-
+- https://public.roboflow.com/object-detection/chess-full/23
 
 #### (2) 데이터셋 디렉토리 구성
 다운로드 받은 데이터셋을 `datasets/Chess_Pieces` 디렉토리에 추가.
