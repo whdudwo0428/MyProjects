@@ -5,23 +5,6 @@
 YOLOv5와 Roboflow의 체스 데이터셋을 이용하여 실습하며, 코드 구조, YOLO 원리, 데이터 수집 및 처리 방법 등을 학습함.
 새로운 아이디어를 제시하기보다는 실습에 가까운 프로젝트로 진행.
 
-## File구조
-프로젝트 디렉토리의 주요 구성은 아래와 같습니다:
-
-```bash
-.
-├── models/                # 모델 구성 관련 파일
-├── utils/                 # 유틸리티 스크립트
-├── data/                  # 데이터셋 구성 파일 (coco.yaml 등)
-├── datasets/              # 체스 말 학습 데이터셋 (Roboflow 제공)
-├── yolov5_env/            # 환경설정 관련 스크립트
-├── detect.py              # 탐지 실행 스크립트
-├── train.py               # 학습 실행 스크립트
-├── test.py                # 테스트 스크립트
-├── tutorial.ipynb         # Jupyter Notebook 실습 파일
-└── requirements.txt       # 의존성 패키지 리스트
-```
-
 ## 환경 설치 및 데이터셋 수집
 
 ### 1. YOLOv5, PyTorch 다운로드 및 설치 과정
@@ -94,6 +77,23 @@ val: datasets/Chess_Pieces/valid
 nc: 12
 names: ['white-king', 'white-queen', 'white-bishop', 'white-knight', 'white-rook', 'white-pawn',
         'black-king', 'black-queen', 'black-bishop', 'black-knight', 'black-rook', 'black-pawn']
+```
+
+## File구조
+프로젝트 디렉토리의 주요 구성은 아래와 같습니다:
+
+```bash
+.
+├── models/                # 모델 구성 관련 파일
+├── utils/                 # 유틸리티 스크립트
+├── data/                  # 데이터셋 구성 파일 (coco.yaml 등)
+├── datasets/              # 체스 말 학습 데이터셋 (Roboflow 제공)
+├── yolov5_env/            # 환경설정 관련 스크립트
+├── detect.py              # 탐지 실행 스크립트
+├── train.py               # 학습 실행 스크립트
+├── test.py                # 테스트 스크립트
+├── tutorial.ipynb         # Jupyter Notebook 실습 파일
+└── requirements.txt       # 의존성 패키지 리스트
 ```
 
 ## 모델 학습 및 테스트
