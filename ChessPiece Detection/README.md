@@ -79,7 +79,7 @@ names: ['white-king', 'white-queen', 'white-bishop', 'white-knight', 'white-rook
         'black-king', 'black-queen', 'black-bishop', 'black-knight', 'black-rook', 'black-pawn']
 ```
 
-## File구조
+## File 구조
 프로젝트 디렉토리의 주요 구성은 아래와 같습니다:
 
 ```bash
